@@ -2,17 +2,17 @@ import { Text, View, Pressable } from "react-native";
 import { Link } from "expo-router";
 import { styles } from "../assets/styles/second.styles";
 
-export default function Index() {
+export default function Second() {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>Welcome to Moja Mobile</Text>
-        <Text style={styles.subtitle}>
-          A lightweight Expo Router starter with two screens and shared styles.
+        <Text style={styles.heading}>Second Screen</Text>
+        <Text style={styles.text}>
+          This is your second screen. Use the home screen to navigate back and forth.
         </Text>
-        <Link href="/second" asChild>
+        <Link href="/" asChild>
           <Pressable style={styles.button}>
-            <Text style={styles.buttonText}>Open second screen</Text>
+            <Text style={styles.buttonText}>Back to home</Text>
           </Pressable>
         </Link>
       </View>
