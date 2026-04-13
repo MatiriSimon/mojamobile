@@ -1,6 +1,6 @@
 import { Text, View, Pressable } from "react-native";
-import { Link } from "expo-router";
-import { styles } from "../assets/styles/second.styles";
+
+import { styles } from "../assets/styles/index.styles";
 
 export default function Index() {
   return (
@@ -10,11 +10,9 @@ export default function Index() {
         <Text style={styles.subtitle}>
           A lightweight Expo Router starter with two screens and shared styles.
         </Text>
-        <Link href="/second" asChild>
           <Pressable style={styles.button}>
             <Text style={styles.buttonText}>Open second screen</Text>
           </Pressable>
-        </Link>
       </View>
     </View>
   );
