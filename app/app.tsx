@@ -3,15 +3,15 @@ import { FlatList, StyleSheet, Text, View } from 'react-native'
 import { supabase } from '../lib/supabase'
 
 export default function App() {
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState<any[]>([])
 
   useEffect(() => {
     getUser()
   }, [])
 
   async function getUser() {
-    const { data } = await supabase.from('users').select()
-    setUser(data)
+    const { data } = await supabase.from('user').select()
+    setUser(data || [])
   }
 
   return (
