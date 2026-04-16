@@ -6,7 +6,7 @@ export const testSupabaseConnection = async (): Promise<void> => {
     // We select any table. Even if it doesn't exist, 
     // a 404 response confirms the API reached Supabase.
     const { data, error } = await supabase
-      .from('profiles') // Replace with an actual table name if you have one
+      .from('user') // Replace with an actual table name if you have one
       .select('*')
       .limit(1);
 

@@ -1,19 +1,21 @@
 import { useEffect, useState } from 'react'
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import { supabase } from '../lib/supabase'
+import { testSupabaseConnection } from '@/utils/checkConnection'
 
 export default function App() {
   const [user, setUser] = useState<any[]>([])
 
   useEffect(() => {
+    testSupabaseConnection()
     getUser()
   }, [])
 
   async function getUser() {
-    const { data } = await supabase.from('user').select()
-    setUser(data || [])
-  }
-
+  const { data, error } = await supabase.from('user').select()
+  if (error) console.error('Failed to fetch users:', error)
+  setUser(data || [])
+}
   return (
     <View style={styles.container}>
       <FlatList

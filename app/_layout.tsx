@@ -7,7 +7,7 @@ export default function RootLayout() {
 
   useEffect(() => {
     console.log("--- LAYOUT MOUNTED (useEffect) ---");
-    testSupabaseConnection();
+    //testSupabaseConnection();
   }, []);
 
   return <Stack />;
