@@ -3,16 +3,19 @@ import { PostgrestError } from '@supabase/supabase-js';
 
 export const testSupabaseConnection = async (): Promise<void> => {
   try {
-    // We select any table. Even if it doesn't exist, 
-    // a 404 response confirms the API reached Supabase.
+    console.log('🔐 Checking Supabase auth status...')
+    const { data: authData, error: authError } = await supabase.auth.getSession()
+    console.log('Auth session:', authData?.session ? 'authenticated' : 'anonymous', authError)
+    
+    console.log('📡 Testing connection to User table...')
     const { data, error } = await supabase
-      .from('user') // Replace with an actual table name if you have one
+      .from('User')
       .select('*')
       .limit(1);
 
     if (error) {
       const pgError = error as PostgrestError;
-      console.error('❌ Supabase Error:', pgError.message);
+      console.error('❌ Supabase Error:', pgError.message, pgError);
       return;
     }
 
