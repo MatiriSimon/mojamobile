@@ -1,17 +1,16 @@
-import { AuthContext } from '@/hooks/use-auth-context'
+import { AuthContext, Profile } from '@/hooks/use-auth-context'
 import { supabase } from '@/lib/supabase'
 import { PropsWithChildren, useEffect, useState } from 'react'
 
 export default function AuthProvider({ children }: PropsWithChildren) {
   const [claims, setClaims] = useState<Record<string, any> | undefined | null>()
-  const [profile, setProfile] = useState<any>()
+  const [profile, setProfile] = useState<Profile | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
   // Fetch the claims once, and subscribe to auth state changes
   useEffect(() => {
     const fetchClaims = async () => {
-      setIsLoading(true)
-
+      // Don't set loading here if we want to wait for the profile too
       const { data, error } = await supabase.auth.getClaims()
 
       if (error) {
@@ -19,7 +18,6 @@ export default function AuthProvider({ children }: PropsWithChildren) {
       }
 
       setClaims(data?.claims ?? null)
-      setIsLoading(false)
     }
 
     fetchClaims()
@@ -42,13 +40,21 @@ export default function AuthProvider({ children }: PropsWithChildren) {
   useEffect(() => {
     const fetchProfile = async () => {
       setIsLoading(true)
-
-      if (claims) {
-        const { data } = await supabase.from('profiles').select('*').eq('id', claims.sub).single()
-
-        setProfile(data)
-      } else {
-        setProfile(null)
+      try {
+        if (claims?.sub) {
+          const { data, error } = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', claims.sub)
+            .single()
+          
+          if (error) throw error
+          setProfile(data)
+        } else {
+          setProfile(null)
+        }
+      } catch (err) {
+        console.error('Error fetching profile:', err)
       }
 
       setIsLoading(false)
@@ -63,7 +69,7 @@ export default function AuthProvider({ children }: PropsWithChildren) {
         claims,
         isLoading,
         profile,
-        isLoggedIn: claims != undefined,
+        isLoggedIn: !!claims,
       }}
     >
       {children}
