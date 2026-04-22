@@ -1,29 +1,32 @@
 import React, { useState } from 'react'
-import { Alert, StyleSheet, View, AppState, TextInput, Button, Text } from 'react-native'
+import { Alert, StyleSheet, View, TextInput, Button, Text } from 'react-native'
 import { supabase } from '@/lib/supabase'
 import { Link } from 'expo-router'
 
-export default function Login() {
+export default function Signup() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
-
-  async function signInWithEmail() {
+  
+  async function signUpWithEmail() {
     setLoading(true)
-    const { error } = await supabase.auth.signInWithPassword({
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.signUp({
       email: email,
       password: password,
     })
 
     if (error) Alert.alert(error.message)
+    if (!session) Alert.alert('Please check your inbox for email verification!')
     setLoading(false)
   }
 
   return (
     <View style={styles.container}>
       <View style={[styles.verticallySpaced, styles.mt20]}>
-        <TextInput
-          label="Email"
+       <TextInput
           onChangeText={(text) => setEmail(text)}
           value={email}
           placeholder="email@address.com"
@@ -33,7 +36,6 @@ export default function Login() {
       </View>
       <View style={styles.verticallySpaced}>
         <TextInput
-          label="Password"
           onChangeText={(text) => setPassword(text)}
           value={password}
           secureTextEntry={true}
@@ -43,10 +45,10 @@ export default function Login() {
         />
       </View>
       <View style={[styles.verticallySpaced, styles.mt20]}>
-        <Button title="Sign in" disabled={loading} onPress={() => signInWithEmail()} />
+        <Button title="Sign up" disabled={loading} onPress={() => signUpWithEmail()} />
       </View>
-      <Link href="/signup" style={styles.link}>
-        <Text>Don not have an account? Sign up</Text>
+      <Link href="./login" style={styles.link}>
+        <Text>Already have an account? Sign in</Text>
       </Link>
     </View>
   )
@@ -59,3 +61,6 @@ const styles = StyleSheet.create({
   input: { borderBottomWidth: 1, padding: 8 },
   link: { marginTop: 15, textAlign: 'center', color: 'blue' }
 })
+
+
+

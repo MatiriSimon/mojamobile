@@ -5,23 +5,17 @@ import 'react-native-reanimated'
 
 import { SplashScreenController } from '@/components/splash-screen-controller'
 
-import { useAuthContext } from '@/hooks/use-auth-context'
+//import { useAuthContext } from '@/hooks/use-auth-context'
 import { useColorScheme } from '@/hooks/use-color-scheme'
 import AuthProvider from '@/providers/auth-provider'
 
 
 // Separate RootNavigator so we can access the AuthContext
 function RootNavigator() {
-  const { isLoggedIn } = useAuthContext()
-
   return (
     <Stack>
-      <Stack.Protected guard={isLoggedIn}>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack.Protected>
-      <Stack.Protected guard={!isLoggedIn}>
-        <Stack.Screen name="login" options={{ headerShown: false }} />
-      </Stack.Protected>
+      <Stack.Screen name="(root)" options={{ headerShown: false }} />
+      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
       <Stack.Screen name="+not-found" />
     </Stack>
   )

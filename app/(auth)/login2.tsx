@@ -3,29 +3,26 @@ import { Alert, StyleSheet, View, TextInput, Button, Text } from 'react-native'
 import { supabase } from '@/lib/supabase'
 import { Link } from 'expo-router'
 
-export default function Signup() {
+export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
-  async function signUpWithEmail() {
+
+  async function signInWithEmail() {
     setLoading(true)
-    const {
-      data: { session },
-      error,
-    } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
     })
 
     if (error) Alert.alert(error.message)
-    if (!session) Alert.alert('Please check your inbox for email verification!')
     setLoading(false)
   }
 
   return (
     <View style={styles.container}>
       <View style={[styles.verticallySpaced, styles.mt20]}>
-       <TextInput
+        <TextInput
           onChangeText={(text) => setEmail(text)}
           value={email}
           placeholder="email@address.com"
@@ -44,10 +41,10 @@ export default function Signup() {
         />
       </View>
       <View style={[styles.verticallySpaced, styles.mt20]}>
-        <Button title="Sign up" disabled={loading} onPress={() => signUpWithEmail()} />
+        <Button title="Sign in" disabled={loading} onPress={() => signInWithEmail()} />
       </View>
-      <Link href="/login" style={styles.link}>
-        <Text>Already have an account? Sign in</Text>
+      <Link href="./signup" style={styles.link}>
+        <Text>Don not have an account? Sign up</Text>
       </Link>
     </View>
   )
@@ -60,6 +57,3 @@ const styles = StyleSheet.create({
   input: { borderBottomWidth: 1, padding: 8 },
   link: { marginTop: 15, textAlign: 'center', color: 'blue' }
 })
-
-
-
