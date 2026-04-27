@@ -16,10 +16,15 @@ export default function Signup() {
     } = await supabase.auth.signUp({
       email: email,
       password: password,
+      options: {
+      // This ensures that when they click "Confirm Email", they land back in your app
+      emailRedirectTo: 'exp://192.168.0.118:8081',
+    },
     })
 
     if (error) Alert.alert(error.message)
-    if (!session) Alert.alert('Please check your inbox for email verification!')
+    if (!session && !error) 
+      {Alert.alert('Please check your inbox for email verification!')}
     setLoading(false)
   }
 
