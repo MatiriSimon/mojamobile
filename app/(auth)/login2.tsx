@@ -3,6 +3,7 @@ import { Alert, StyleSheet, View, TextInput, Button, Text } from 'react-native'
 import { supabase } from '@/lib/supabase'
 import { Link } from 'expo-router'
 
+
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -49,6 +50,8 @@ export default function Login() {
     </View>
   )
 }
+
+
 
 const styles = StyleSheet.create({
   container: { marginTop: 40, padding: 12 },

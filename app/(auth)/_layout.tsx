@@ -19,7 +19,7 @@ export default function AuthLayout() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="login" />
+      {/* <Stack.Screen name="login" /> */}
       <Stack.Screen name="login2" />
       <Stack.Screen name="signup" />
     </Stack>
