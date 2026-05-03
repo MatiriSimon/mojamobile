@@ -15,5 +15,15 @@ export default function Layout() {
 
   if (isLoading) return null // Or return a <Loading /> component
 
-  return <Stack />
+  // return <Stack />
+
+  return (
+    <Stack
+      screenOptions={{
+        headerShown: true,
+      }}
+    >
+      <Stack.Screen name="index" />
+    </Stack>
+  )
 }

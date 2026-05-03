@@ -14,8 +14,8 @@ import AuthProvider from '@/providers/auth-provider'
 function RootNavigator() {
   return (
     <Stack>
-      <Stack.Screen name="(root)" options={{ headerShown: false }} />
-      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+      <Stack.Screen name="(root)" options={{ headerShown: true }} />
+      <Stack.Screen name="(auth)" options={{ headerShown: true }} />
       <Stack.Screen name="+not-found" />
     </Stack>
   )

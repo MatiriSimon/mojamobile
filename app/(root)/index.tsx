@@ -28,7 +28,7 @@ export default function HomeScreen() {
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Username</ThemedText>
         <ThemedText>{profile?.username}</ThemedText>
-        <ThemedText type="subtitle">Full name</ThemedText>
+        <ThemedText type="subtitle">Full Name</ThemedText>
         <ThemedText>{profile?.full_name}</ThemedText>
       </ThemedView>
       <SignOutButton />
