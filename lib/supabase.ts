@@ -1,3 +1,4 @@
+import 'react-native-url-polyfill/auto'
 import { createClient } from '@supabase/supabase-js'
 import { deleteItemAsync, getItemAsync, setItemAsync } from 'expo-secure-store'
 
