@@ -9,7 +9,7 @@ export default function Layout() {
   useEffect(() => {
     // Only redirect if we are certain the user is not logged in
     if (!isLoading && !isLoggedIn) {
-      router.replace('./login2')
+      router.replace('/login2')
     }
   }, [isLoggedIn, isLoading, router])
 

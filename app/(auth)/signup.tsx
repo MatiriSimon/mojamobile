@@ -18,7 +18,7 @@ export default function Signup() {
       password: password,
       options: {
       // This ensures that when they click "Confirm Email", they land back in your app
-      emailRedirectTo: 'exp://127.0.0.1:8081',
+      emailRedirectTo: 'mojamobile://',
     },
     })
 

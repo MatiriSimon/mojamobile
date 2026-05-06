@@ -76,7 +76,7 @@ export default function AuthProvider({ children }: PropsWithChildren) {
         claims,
         isLoading,
         profile,
-        isLoggedIn: !!claims,
+        isLoggedIn: !!claims?.sub,
       }}
     >
       {children}
