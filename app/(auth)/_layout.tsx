@@ -1,5 +1,5 @@
-import { Stack, useRouter } from 'expo-router'
 import { useAuthContext } from '@/hooks/use-auth-context'
+import { Stack, useRouter } from 'expo-router'
 import { useEffect } from 'react'
 
 export default function AuthLayout() {
@@ -7,9 +7,9 @@ export default function AuthLayout() {
   const router = useRouter()
 
   useEffect(() => {
-    // If the user is already logged in, redirect them to the home screen
+    // If the user is already logged in, redirect them to the dashboard
     if (isLoggedIn) {
-      router.replace('/')
+      router.replace('/(root)')
     }
   }, [isLoggedIn, router])
 
@@ -19,7 +19,6 @@ export default function AuthLayout() {
         headerShown: true,
       }}
     >
-      {/* <Stack.Screen name="login" /> */}
       <Stack.Screen name="login2" />
       <Stack.Screen name="signup" />
     </Stack>

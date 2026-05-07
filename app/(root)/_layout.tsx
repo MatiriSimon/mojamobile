@@ -1,22 +1,7 @@
-import { Stack, useRouter } from 'expo-router'
-import { useAuthContext } from '@/hooks/use-auth-context'
-import { useEffect } from 'react'
+import { Stack } from 'expo-router'
 
 export default function Layout() {
-  const { isLoggedIn, isLoading } = useAuthContext()
-  const router = useRouter()
-
-  useEffect(() => {
-    // Only redirect if we are certain the user is not logged in
-    if (!isLoading && !isLoggedIn) {
-      router.replace('/login2')
-    }
-  }, [isLoggedIn, isLoading, router])
-
-  if (isLoading) return null // Or return a <Loading /> component
-
-  // return <Stack />
-
+  // Remove the auth redirect logic - let individual screens handle auth requirements
   return (
     <Stack
       screenOptions={{
@@ -24,6 +9,7 @@ export default function Layout() {
       }}
     >
       <Stack.Screen name="index" />
+      <Stack.Screen name="dashboard" />
     </Stack>
   )
 }

@@ -1,15 +1,28 @@
 import { Image } from 'expo-image'
+import { useRouter } from 'expo-router'
+import { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 
 import { HelloWave } from '@/components/hello-wave'
 import ParallaxScrollView from '@/components/parallax-scroll-view'
+import SignOutButton from '@/components/social-auth-buttons/sign-out-button'
 import { ThemedText } from '@/components/themed-text'
 import { ThemedView } from '@/components/themed-view'
-import SignOutButton from '@/components/social-auth-buttons/sign-out-button'
 import { useAuthContext } from '@/hooks/use-auth-context'
 
-export default function HomeScreen() {
-  const { profile } = useAuthContext()
+export default function DashboardScreen() {
+  const { profile, isLoggedIn, isLoading } = useAuthContext()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!isLoading && !isLoggedIn) {
+      router.replace('/login2')
+    }
+  }, [isLoggedIn, isLoading, router])
+
+  if (isLoading || !isLoggedIn) {
+    return null // Or show a loading component
+  }
 
   return (
     <ParallaxScrollView
@@ -22,7 +35,7 @@ export default function HomeScreen() {
       }
     >
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
+        <ThemedText type="title">Dashboard</ThemedText>
         <HelloWave />
       </ThemedView>
       <ThemedView style={styles.stepContainer}>

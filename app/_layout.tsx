@@ -14,9 +14,10 @@ import AuthProvider from '@/providers/auth-provider'
 function RootNavigator() {
   return (
     <Stack>
+      <Stack.Screen name="index" options={{ headerShown: true }} />
       <Stack.Screen name="(root)" options={{ headerShown: true }} />
       <Stack.Screen name="(auth)" options={{ headerShown: true }} />
-      <Stack.Screen name="+not-found" />
+      <Stack.Screen name="+not-found" options={{ headerShown: true }} />
     </Stack>
   )
 }
