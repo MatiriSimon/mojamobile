@@ -3,11 +3,11 @@ import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import 'react-native-reanimated'
 
-import { SplashScreenController } from '@/components/splash-screen-controller'
+import { SplashScreenController } from '@/components/splashScreenController'
 
 //import { useAuthContext } from '@/hooks/use-auth-context'
-import { useColorScheme } from '@/hooks/use-color-scheme'
-import AuthProvider from '@/providers/auth-provider'
+import { useColorScheme } from '@/hooks/useColorScheme'
+import AuthProvider from '@/providers/authProvider'
 
 
 // Separate RootNavigator so we can access the AuthContext

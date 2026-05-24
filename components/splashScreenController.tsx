@@ -1,4 +1,4 @@
-import { useAuthContext } from '@/hooks/use-auth-context'
+import { useAuthContext } from '@/hooks/useAuthContext'
 import { SplashScreen } from 'expo-router'
 import { useEffect } from 'react'
 

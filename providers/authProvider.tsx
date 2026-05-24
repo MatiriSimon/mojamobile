@@ -1,4 +1,4 @@
-import { AuthContext, Profile } from '@/hooks/use-auth-context'
+import { AuthContext, Profile } from '@/hooks/useAuthContext'
 import { supabase } from '@/lib/supabase'
 import { PropsWithChildren, useEffect, useState } from 'react'
 
