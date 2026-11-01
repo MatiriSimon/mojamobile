@@ -40,6 +40,10 @@ export const supabase = createClient(
 
 
 /*
+// Mostly needed when your app needs alot of offline susage
+//  and you want to use SQLite for storage instead of SecureStore.
+//  This is a more advanced setup and may require additional configuration.
+
 import 'react-native-url-polyfill/auto'
 import { createClient } from '@supabase/supabase-js'
 import { Platform } from 'react-native'
