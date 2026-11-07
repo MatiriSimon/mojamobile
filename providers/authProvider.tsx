@@ -41,11 +41,15 @@ export default function AuthProvider({ children }: PropsWithChildren) {
   }, [])
 
   // Fetch the profile when the claims change
+  // NOTE: sub in full is subject, which is the unique identifier for the user in Supabase
+  // _event and _session with underscores means even if they are not used, will not throw an error for unused variables
+  // even without the underscore, it will not throw an error for unused variables, but it's a convention to indicate that they are intentionally unused
+  // in fact __session is used in the onAuthStateChange callback, but we don't need it here, so we can ignore it
   useEffect(() => {
     const fetchProfile = async () => {
       setIsLoading(true)
       try {
-        if (claims?.sub) {
+        if (claims?.sub) {   
           const { data, error } = await supabase
             .from('profiles')
             .select('*')
