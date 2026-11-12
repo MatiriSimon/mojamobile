@@ -52,7 +52,7 @@ export default function Signup() {
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Button title="Sign up" disabled={loading} onPress={() => signUpWithEmail()} />
       </View>
-      <Link href="./login2" style={styles.link}>
+      <Link href="./login" style={styles.link}>
         <Text>Already have an account? Sign in</Text>
       </Link>
     </View>

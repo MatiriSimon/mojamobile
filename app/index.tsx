@@ -9,7 +9,7 @@ import { ThemedView } from '@/components/themedView'
 export default function LandingScreen() {
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerBackgroundColor={{ light: '#A1CEDC', dark: '#7f979e' }}
       headerImage={
         <Image
           source={require('@/assets/images/partialReactLogo.png')}
@@ -29,7 +29,7 @@ export default function LandingScreen() {
         </ThemedText>
 
         <ThemedView style={styles.buttonContainer}>
-          <Link href="/login2" style={styles.link}>
+          <Link href="/login" style={styles.link}>
             <ThemedText type="link">Sign In</ThemedText>
           </Link>
           <Link href="/signup" style={styles.link}>

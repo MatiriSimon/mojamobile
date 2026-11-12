@@ -16,7 +16,7 @@ export default function DashboardScreen() {
 
   useEffect(() => {
     if (!isLoading && !isLoggedIn) {
-      router.replace('/login2')
+      router.replace('/login')
     }
   }, [isLoggedIn, isLoading, router])
 
